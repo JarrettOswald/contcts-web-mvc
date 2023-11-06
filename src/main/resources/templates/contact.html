@@ -1,0 +1,69 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contacts</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+
+<div class="container">
+    <main>
+        <div class="row align-items-center">
+            <div class="py-5 text-center">
+                <h2 class="display-1">Contacts form</h2>
+            </div>
+            <div class="row g-5">
+                <div class="col-md-5 col-lg-4 order-md-last border border-primary shadow-lg p-4 mb-5 bg-white rounded text-center">
+                    <h4 class="display-5">
+                        Your contact:
+                    </h4>
+                    <div>
+                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                             class="rounded-circle me-2"/>
+                    </div>
+                </div>
+                <div class="col-md-7 border border-primary shadow-lg p-4 mb-5 bg-white rounded">
+                    <h4 class="mb-3"><span th:text="${operation}"></span> Contact</h4>
+                    <form th:object="${contact}" action="/contact/process" method="post">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label">UUID</label>
+                                <input th:field="*{id}" type="text" class="form-control bg-secondary text-white" required readonly>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label">First name</label>
+                                <input th:field="*{firstname}" type="text" class="form-control"
+                                       required>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label">Last name</label>
+                                <input th:field="*{lastname}" type="text" class="form-control" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Email </label>
+                                <input th:field="*{email}" type="email" class="form-control"
+                                       placeholder="you@example.com">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Phone</label>
+                                <input th:field="*{phone}" type="text" class="form-control"
+                                       placeholder="+7-800-535-35-35" required>
+                            </div>
+                            <button class="w-100 btn btn-primary btn-lg" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Подключение JS файла bootstrap 5 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+</body>
+</html>

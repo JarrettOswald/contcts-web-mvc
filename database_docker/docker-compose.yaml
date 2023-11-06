@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+
+  database:
+    image: postgres
+    container_name: contacts-local
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: contacts
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql

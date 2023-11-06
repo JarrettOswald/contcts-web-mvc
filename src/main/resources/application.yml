@@ -1,0 +1,19 @@
+server:
+  port: ${SERVER_PORT:16001}
+
+spring:
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/contacts}
+    username: ${POSTGRES_USERNAME:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+    hikari:
+      schema: ${CONTACTS_SCHEMA:contacts_schema}
+
+app:
+  init:
+    enabled: ${CREATE_RANDOM_CONTACTS:true}
+    contacts: ${COUNT_GENERATED_CONTACT:10}
+
+logging:
+  level:
+    root: INFO
