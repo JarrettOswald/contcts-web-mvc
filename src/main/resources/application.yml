@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/contacts}
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:18000/contacts}
     username: ${POSTGRES_USERNAME:postgres}
     password: ${POSTGRES_PASSWORD:postgres}
     hikari:

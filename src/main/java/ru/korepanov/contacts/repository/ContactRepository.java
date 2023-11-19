@@ -1,7 +1,6 @@
 package ru.korepanov.contacts.repository;
 
-
-import ru.korepanov.contacts.jooq.db.tables.pojos.Contacts;
+import ru.korepanov.contacts.repository.model.Contact;
 
 import java.util.List;
 import java.util.UUID;
@@ -14,23 +13,23 @@ public interface ContactRepository {
     /**
      * @return все контакты в базе данных
      */
-    List<Contacts> findAllContacts();
+    List<Contact> findAllContact();
 
     /**
      * @param id uuid контакта
      * @return объект контакта
      */
-    Contacts findContactById(UUID id);
+    Contact findContactById(UUID id);
 
     /**
      * @param contact объект контакта
      */
-    void saveContact(Contacts contact);
+    void saveContact(Contact contact);
 
     /**
      * @param contact объект контакта
      */
-    void updateContact(Contacts contact);
+    void updateContact(Contact contact);
 
     /**
      * @param id uuid контакта
@@ -38,14 +37,14 @@ public interface ContactRepository {
     void deleteContactById(UUID id);
 
     /**
-     * @param contacts список контактов
+     * @param Contact список контактов
      */
-    void batchInsertContacts(List<Contacts> contacts);
+    void batchInsertContact(List<Contact> contact);
 
     /**
      * @return количество контактов
      */
-    long getCountContacts();
+    long getCountContact();
 
     /**
      * @param id uuid

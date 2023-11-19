@@ -11,7 +11,7 @@
 
     <groupId>ru.korepanov</groupId>
     <artifactId>contacts</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>contacts</name>
     <description>Demo project for Spring Boot</description>
 
@@ -51,10 +51,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jooq</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
@@ -70,46 +66,6 @@
                         </exclude>
                     </excludes>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.jooq</groupId>
-                <artifactId>jooq-codegen-maven</artifactId>
-                <executions>
-                    <execution>
-                        <id>java-generator</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <jdbc>
-                                <driver>${postgresql.driver}</driver>
-                                <url>${postgresql.url}</url>
-                                <user>${postgresql.user}</user>
-                                <password>${postgresql.password}</password>
-                            </jdbc>
-                            <generator>
-                                <database>
-                                    <inputSchema>contacts_schema</inputSchema>
-                                </database>
-                                <generate>
-                                    <daos>true</daos>
-                                </generate>
-                                <target>
-                                    <packageName>ru.korepanov.contacts.jooq.db</packageName>
-                                    <directory>target/generated-src/jooq/main</directory>
-                                </target>
-                            </generator>
-                        </configuration>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>junit</groupId>
-                        <artifactId>junit</artifactId>
-                        <version>4.13.1</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>

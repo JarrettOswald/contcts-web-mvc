@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import ru.korepanov.contacts.jooq.db.tables.pojos.Contacts;
-import ru.korepanov.contacts.service.ContactsService;
+import ru.korepanov.contacts.repository.model.Contact;
+import ru.korepanov.contacts.service.ContactService;
 
 import java.util.List;
 import java.util.UUID;
@@ -26,7 +26,7 @@ import static ru.korepanov.contacts.controllers.ConstantsModelAttribute.*;
 @RequiredArgsConstructor
 public class ContactsController {
 
-    private final ContactsService service;
+    private final ContactService service;
     public static final String REDIRECT = "redirect:/";
 
     /**
@@ -38,9 +38,9 @@ public class ContactsController {
     @GetMapping("/")
     public String index(Model model) {
         log.info("Open index page");
-        List<Contacts> contacts = service.findAllContacts();
+        List<Contact> contacts = service.findAllContact();
         model.addAttribute(CONTACTS, contacts);
-        model.addAttribute(NUMBER_OF_CONTACTS, service.getCountContacts());
+        model.addAttribute(NUMBER_OF_CONTACTS, service.getCountContact());
         return "index";
     }
 
@@ -68,7 +68,7 @@ public class ContactsController {
     @GetMapping("/contact/create")
     public String contactsCreate(Model model) {
         log.info("Open contact page -> create");
-        Contacts contacts = new Contacts();
+        Contact contacts = new Contact();
         contacts.setId(UUID.randomUUID());
         model.addAttribute(CONTACT, contacts);
         model.addAttribute(OPERATION, "Create");
@@ -83,7 +83,7 @@ public class ContactsController {
      * @return редирект на главную страницу
      */
     @PostMapping("/contact/process")
-    public String contactProcess(@ModelAttribute("contact") Contacts contact) {
+    public String contactProcess(@ModelAttribute("contact") Contact contact) {
         log.info("Processing -> {}", contact);
         boolean isExist = service.hasContactById(contact.getId());
         if (isExist) {

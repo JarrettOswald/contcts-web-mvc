@@ -9,6 +9,6 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_DB: contacts
     ports:
-      - "5432:5432"
+      - "18000:5432"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql

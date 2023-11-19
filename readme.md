@@ -1,6 +1,5 @@
 В сервисе используются:
 
-    jooq
     bootstrap
     spring-boot
 
@@ -19,12 +18,12 @@
 
 К базе данных можно подключиться:
 
-    url = jdbc:postgresql://localhost:6432/contacts
+    url = jdbc:postgresql://localhost:18000/contacts
     username = postgres
     password = postgres
     schema = contacts_schema
 
-Сервис будет доступен на **localhost:16008**
+Сервис будет доступен на **localhost:18001**
 
 ---
 

@@ -3,8 +3,8 @@ package ru.korepanov.contacts.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.korepanov.contacts.jooq.db.tables.pojos.Contacts;
 import ru.korepanov.contacts.repository.ContactRepository;
+import ru.korepanov.contacts.repository.model.Contact;
 
 import java.util.Comparator;
 import java.util.List;
@@ -16,16 +16,16 @@ import java.util.UUID;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class ContactsService {
+public class ContactService {
 
     private final ContactRepository repository;
 
     /**
      * @return Возвращает количество контактов.
      */
-    public long getCountContacts() {
-        log.info("-> getCountContacts()");
-        return repository.getCountContacts();
+    public long getCountContact() {
+        log.info("-> getCountContact()");
+        return repository.getCountContact();
     }
 
     /**
@@ -34,7 +34,7 @@ public class ContactsService {
      * @param id контакта
      * @return найденный контакт или null, если контакт не найден
      */
-    public Contacts findContactById(UUID id) {
+    public Contact findContactById(UUID id) {
         log.info("-> findContactById({})", id);
         return repository.findContactById(id);
     }
@@ -44,17 +44,17 @@ public class ContactsService {
      *
      * @return список контактов, отсортированный по имени
      */
-    public List<Contacts> findAllContacts() {
-        log.info("-> findAllContacts()");
-        List<Contacts> contacts = repository.findAllContacts();
-        contacts.sort((Comparator.comparing(Contacts::getFirstname)));
+    public List<Contact> findAllContact() {
+        log.info("-> findAllContact()");
+        List<Contact> contacts = repository.findAllContact();
+        contacts.sort((Comparator.comparing(Contact::getFirstname)));
         return contacts;
     }
 
     /**
      * @param contact Сохраняет контакт.
      */
-    public void saveContact(Contacts contact) {
+    public void saveContact(Contact contact) {
         log.info("-> saveContact(): {}", contact);
         repository.saveContact(contact);
     }
@@ -62,7 +62,7 @@ public class ContactsService {
     /**
      * @param contact контакт для обновления
      */
-    public void updateContact(Contacts contact) {
+    public void updateContact(Contact contact) {
         log.info("-> updateContact(): {}", contact);
         repository.updateContact(contact);
     }
